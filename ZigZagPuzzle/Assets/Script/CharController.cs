@@ -6,12 +6,16 @@ public class CharController : MonoBehaviour
 {
     private Rigidbody rigidbody;
     private bool walkingRight = true;
+    private Animator animator;
+
+    public Transform rayStart;
 
 
     // Start is called before the first frame update
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -21,6 +25,14 @@ public class CharController : MonoBehaviour
         {
             ChangePosition();
         }
+
+        RaycastHit hit;
+
+        if (!Physics.Raycast(rayStart.position, -transform.up, out hit, Mathf.Infinity))
+        {
+            animator.SetTrigger("isFalling");
+        }
+
         
     }
 
