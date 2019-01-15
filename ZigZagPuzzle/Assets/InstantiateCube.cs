@@ -18,5 +18,10 @@ public class InstantiateCube : MonoBehaviour
     {
         Instantiate(prefab, new Vector3(-15 + counter * 3.0F, 0, 0), Quaternion.identity);
         counter++;
+
+        if (counter > 5)
+        {
+            CancelInvoke();
+        }
     }
 }
