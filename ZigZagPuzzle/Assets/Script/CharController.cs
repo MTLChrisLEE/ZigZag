@@ -57,6 +57,11 @@ public class CharController : MonoBehaviour
 
     private void ChangePosition()
     {
+        if (!gameManager.gameStarted)
+        {
+            return;
+        }
+
         this.walkingRight = !this.walkingRight;
 
         if(this.walkingRight)
@@ -69,4 +74,14 @@ public class CharController : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter(Collider crystal)
+    {
+        if(crystal.tag == "Crystal")
+        {
+            Destroy(crystal.gameObject);
+            gameManager.IncreaseScore();
+        }
+    }
+
 }
