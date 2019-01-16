@@ -10,6 +10,7 @@ public class CharController : MonoBehaviour
     private GameManager gameManager;
 
     public Transform rayStart;
+    public GameObject crystalParticles;
 
 
     // Start is called before the first frame update
@@ -81,6 +82,9 @@ public class CharController : MonoBehaviour
         {
             Destroy(crystal.gameObject);
             gameManager.IncreaseScore();
+
+            GameObject obj = Instantiate(crystalParticles, transform.position, Quaternion.identity);
+            Destroy(obj, 2);
         }
     }
 
